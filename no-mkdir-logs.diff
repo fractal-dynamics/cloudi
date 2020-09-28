@@ -1,0 +1,20 @@
+--- a/src/Makefile.am	2018-12-19 05:04:03.000000000 +0300
++++ b/src/Makefile.am	2019-07-11 19:11:50.373137331 +0300
+@@ -345,7 +345,6 @@
+ 
+ install-exec-hook:
+ 	$(MKDIR_P) "$(DESTDIR)$(bindir)"
+-	$(MKDIR_P) "$(DESTDIR)$(cloudi_logdir)"
+ 	$(MKDIR_P) "$(DESTDIR)$(cloudi_confdir)"
+ 	$(MKDIR_P) "$(DESTDIR)$(cloudi_bindir)"
+ 	$(MKDIR_P) "$(DESTDIR)$(cloudi_prefix)"
+@@ -353,8 +352,7 @@
+ 	$(MKDIR_P) "$(DESTDIR)$(cloudi_prefix)/lib"
+ 	$(MKDIR_P) "$(DESTDIR)$(cloudi_prefix)/releases"
+ 	(cd "$(DESTDIR)$(cloudi_prefix)" && \
+-     test ! -e etc && $(LN_S) "$(cloudi_confdir)" etc || exit 0 && \
+-     test ! -e logs && $(LN_S) "$(cloudi_logdir)" logs || exit 0)
++     test ! -e etc && $(LN_S) "$(cloudi_confdir)" etc || exit 0)
+ 	test -e "$(DESTDIR)$(cloudi_confdir)/cloudi.conf" && \
+        mv -f "$(DESTDIR)$(cloudi_confdir)/cloudi.conf" \
+              "$(DESTDIR)$(cloudi_confdir)/cloudi.conf.old" || exit 0
