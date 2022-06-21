@@ -2,13 +2,13 @@ with import <nixpkgs> {};
 
 stdenv.mkDerivation rec {
   name = "cloudi-${version}";
-  version = "1.7.5";
+  version = "2.0.4";
 
   src = fetchzip {
     url = "https://osdn.net/dl/cloudi/${name}.tar.gz";
-    sha256 = "0aj0rwzfyad99gnm27km705ba46nsdy1ww87qgk3cfpi0017wx86";
+    sha256 = "sha256-PMIpPKF26Vx3Q/HfbyaM57MyQLBBeKo3JURyBv6YSLw=";
   };
-
+  
   patches = [ ./no-mkdir-logs.diff ];
 
   preAutoreconf = "cd src";
