@@ -2,11 +2,11 @@ with import <nixpkgs> {};
 
 stdenv.mkDerivation rec {
   name = "cloudi-${version}";
-  version = "2.0.4";
+  version = "2.0.5";
 
   src = fetchzip {
     url = "https://osdn.net/dl/cloudi/${name}.tar.gz";
-    sha256 = "sha256-PMIpPKF26Vx3Q/HfbyaM57MyQLBBeKo3JURyBv6YSLw=";
+    sha256 = "sha256-Rbyt1NTjjX2uxkrp7KtC02MHMgr8Bu4iLwFdbRMppkA=";
   };
   
   patches = [ ./no-mkdir-logs.diff ];
@@ -23,7 +23,9 @@ stdenv.mkDerivation rec {
   buildInputs = [ 
     boost
     erlang
-    ncurses 
+    gmp
+    ncurses
+    python3 
     systemd
   ];
 
@@ -33,10 +35,10 @@ stdenv.mkDerivation rec {
     "--enable-perl-support=no"   
     "--enable-php-support=no"
     "--enable-ruby-support=no"
-    "--enable-python-support=no"
+    "--enable-python-support=yes"
     "--enable-python-c-support=no"
     "--localstatedir=/var"
     "--with-boost-libdir=${boost}/lib" # autoconf expects a different location
-    "--with-integration-tests=no"
+    "--with-integration-tests=yes"
   ];
 }
