@@ -5,14 +5,12 @@
 with pkgs;
   stdenv.mkDerivation rec {
     name = "cloudi-${version}";
-    version = "2.0.5";
+    version = "2.0.7";
 
     src = fetchzip {
-      url = "https://osdn.net/dl/cloudi/${name}.tar.gz";
-      sha256 = "sha256-Rbyt1NTjjX2uxkrp7KtC02MHMgr8Bu4iLwFdbRMppkA=";
+      url = "https://downloads.sourceforge.net/project/cloudi/${version}/${name}.tar.gz";
+      sha256 = "sha256-/W6VGxGF379nS+Qsh8vvTC3gBIm9Qh3n6tsczKIAos4=";
     };
-
-    patches = [./no-mkdir-logs.diff];
 
     preAutoreconf = "cd src";
 
@@ -38,9 +36,9 @@ with pkgs;
       "--enable-perl-support=no"
       "--enable-php-support=no"
       "--enable-ruby-support=no"
-      "--enable-python-support=yes"
+      "--enable-python-support=no"
       "--enable-python-c-support=no"
-      "--localstatedir=/var"
+      "--localstatedir=/tmp"
       "--with-boost-libdir=${boost}/lib" # autoconf expects a different location
       "--with-integration-tests=yes"
     ];
